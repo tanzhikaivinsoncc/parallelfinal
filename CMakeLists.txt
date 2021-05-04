@@ -3,5 +3,5 @@ project(MLP)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(run mlp.h mlp.cpp)
+add_executable(run mlp_ptr.h mlp_ptr.cpp)
 

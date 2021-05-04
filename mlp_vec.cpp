@@ -2,7 +2,7 @@
 // Created by Orange.
 //
 
-#include "mlp.h"
+#include "mlp_vec.h"
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -10,25 +10,42 @@
 #include <fstream>
 #include <sstream>
 #include <map>
+#include <random>
 
 using std::cout;
 
 //#define DEBUG
+#define NCORES 8
 
 /*
  * Initialize MLP, including topology and weights
  * */
-MLP::MLP(std::vector<int> topology, float lr) {
+MLP::MLP(std::vector<int> topology, double lr) {
     this->topology = topology;
     this->lr = lr;
+
+    // Used for random initialization
+    std::default_random_engine generator(666);
+    std::normal_distribution<double> distribution(0.f,0.02);
 
     // first layer is input, we don't care.
     for (int i = 1; i < topology.size(); i++) {
         cout << "Initializing layer " << i << ", contains " << topology[i] << " neurons.\n";
         // Initialize weights and biass.
-        M weight(topology[i], B(topology[i - 1]));
+        // 0 mean, 0.02 std
+        M weight;
+        B bias;
+        for (int j = 0; j < topology[i]; j++) {
+            B vec;
+            for (int k = 0; k < topology[i - 1]; k++) {
+                vec.push_back(distribution(generator));
+            }
+            weight.push_back(vec);
+            bias.push_back(distribution(generator));
+        }
+
+
         M weight_grad(topology[i], B(topology[i - 1]));
-        B bias(topology[i]);
         B bias_grad(topology[i]);
         weights.push_back(weight);
         weights_grad.push_back(weight_grad);
@@ -40,6 +57,19 @@ MLP::MLP(std::vector<int> topology, float lr) {
         layers.push_back(neurons);
     }
     cout << "Finished init.\n";
+
+#ifdef DEBUG
+    cout << "The weights are\n";
+    for (int i = 0; i < weights.size(); i++) {
+        cout << "The " << i << "th weight matrix:\n";
+        for (int j = 0; j < weights[i].size(); j++) {
+            for (int k = 0; k < weights[i][j].size(); k++) {
+                cout << weights[i][j][k] << "\t";
+            }
+            cout << "\n";
+        }
+    }
+#endif
 }
 
 /*
@@ -48,7 +78,7 @@ MLP::MLP(std::vector<int> topology, float lr) {
 B wx_plus_b(M weight, B bias, B input) {
     B output;
     for (int i = 0; i < weight.size(); i++) {
-        float v = 0.f;
+        double v = 0.f;
         for (int j = 0; j < weight[0].size(); j++) {
             v += weight[i][j] * input[j];
         }
@@ -63,7 +93,7 @@ B wx_plus_b(M weight, B bias, B input) {
  * */
 B MLP::sigmoid(const B& vec) {
     B activated_vec;
-    for (float elem: vec)
+    for (double elem: vec)
         activated_vec.push_back(1.f / (1.f + exp(-elem)));
     return activated_vec;
 }
@@ -76,14 +106,14 @@ B MLP::sigmoid(const B& vec) {
 B MLP::softmax(B vec) {
     B activated_vec;
     // First get the sum
-    float max_term = *max_element(std::begin(vec), std::end(vec));
-    float log_exp_sum = 0.0;
-    for (float elem: vec)
+    double max_term = *max_element(std::begin(vec), std::end(vec));
+    double log_exp_sum = 0.0;
+    for (double elem: vec)
         log_exp_sum += exp(elem - max_term);
     log_exp_sum = max_term + log(log_exp_sum);
 
-    for (float elem: vec) {
-        float log_val = exp(elem - log_exp_sum);
+    for (double elem: vec) {
+        double log_val = exp(elem - log_exp_sum);
         activated_vec.push_back(log_val);
     }
 
@@ -115,11 +145,7 @@ void MLP::forward(B input) {
         layers[i] = sigmoid(layers[i]);
         input = layers[i];
     }
-#ifdef DEBUG
-    cout << "last_idx " << last_idx << "\n";
-    cout << "weights.size() " << weights.size() << "\n";
-    cout << "biass.size() " << biass.size() << "\n";
-#endif
+
     uint last_idx = topology.size() - 2;
     layers[last_idx] = wx_plus_b(weights[last_idx], biass[last_idx], input);
     layers[last_idx] = softmax(layers[last_idx]);
@@ -127,7 +153,7 @@ void MLP::forward(B input) {
 #ifdef DEBUG
     cout << "Printing out layer values.\n";
     for (const auto& layer: layers) {
-        for (float elem: layer) {
+        for (double elem: layer) {
             cout << elem << "\t";
         }
         cout << "\n";
@@ -138,10 +164,12 @@ void MLP::forward(B input) {
 void MLP::backward(B input, I target) {
     // last layer
     uint last_idx = topology.size() - 2;
+
     for (int i = 0; i < target.size(); i++) {
         // biass_grad is the same as layers_grad
         biass_grad[last_idx][i] = layers[last_idx][i] - target[i];
     }
+
     for (int i = 0; i < biass_grad[last_idx].size(); i++) {
         for (int j = 0; j < layers[last_idx - 1].size(); j++) {
             weights_grad[last_idx][i][j] = biass_grad[last_idx][i] * layers[last_idx - 1][j];
@@ -152,7 +180,7 @@ void MLP::backward(B input, I target) {
     for (int i = topology.size() - 3; i > 0; i--) {
         // Update biass_grad, here we need weight transpose
         for (int j = 0; j < weights[i + 1][0].size(); j++) {
-            float val = 0.f;
+            double val = 0.f;
             for (int k = 0; k < weights[i + 1].size(); k++) {
                 val += weights[i + 1][k][j] * biass_grad[i + 1][k];
             }
@@ -172,7 +200,7 @@ void MLP::backward(B input, I target) {
     // last layer
     // Update biass_grad
     for (int i = 0; i < weights[1][0].size(); i++) {
-        float val = 0.f;
+        double val = 0.f;
         for (int j = 0; j < weights[1].size(); j++) {
             val += weights[1][j][i] * biass_grad[1][j];
         }
@@ -222,13 +250,25 @@ void MLP::optimize() {
             biass[i][j] -= lr * biass_grad[i][j];
         }
     }
+#ifdef DEBUG
+    cout << "After optimization, the weiths are\n";
+    for (int i = 0; i < weights.size(); i++) {
+        cout << "The " << i << "th weight matrix:\n";
+        for (int j = 0; j < weights[i].size(); j++) {
+            for (int k = 0; k < weights[i][j].size(); k++) {
+                cout << weights[i][j][k] << "\t";
+            }
+            cout << "\n";
+        }
+    }
+#endif
 }
 
 /*
  * Read data from csv file. The first row is header, used for
  * determining the number of columns. The first column is label
  * */
-void MLP::read_csv(std::string filename) {
+void MLP::read_csv(std::string filename, std::string type) {
     std::ifstream file(filename);
     std::string line, word;
     // determine number of columns in file
@@ -246,20 +286,28 @@ void MLP::read_csv(std::string filename) {
             B curr_data;
             int num = 0;
             while (getline(ss, word, ',')) {
-                if (num == 0)
-                    label.push_back(std::stoi(&word[0]));
+                if (num == 0) {
+                    if (type == "train") {
+                        train_label.push_back(std::stoi(&word[0]));
+                    } else {
+                        test_label.push_back(std::stoi(&word[0]));
+                    }
+                }
                 else
                     curr_data.push_back(std::stof(&word[0]));
                 num++;
             }
-            data.push_back(curr_data);
+            if (type == "train")
+                train_data.push_back(curr_data);
+            else
+                test_data.push_back(curr_data);
         }
     }
 
     // Get the total label num
     int num = 0;
     std::map<int, bool> labelMap;
-    for (int elem : label)
+    for (int elem : train_label)
         labelMap.insert(std::pair<int, bool>(elem, true));
 
     std::map<int, bool>::iterator iter;
@@ -270,9 +318,18 @@ void MLP::read_csv(std::string filename) {
 
 
 #ifdef DEBUG
-    cout << "number of columns: " << cols << "\n";
+    cout << "number of columns: " << feature_num + 1 << "\n";
     cout << "number of labels: " << label_num << "\n";
     cout << "Printing out data.\n";
+    M data;
+    I label;
+    if (type == "train") {
+        data = train_data;
+        label = train_label;
+    } else {
+        data = test_data;
+        label = test_label;
+    }
     for (int i = 0; i < data.size(); i++) {
         for (int j = 0; j < data[0].size(); j++) {
             cout << data[i][j] << "\t";
@@ -299,14 +356,20 @@ I one_hot_vec(int label, int label_num) {
  * Train MLP for iter iterations.
  * */
 void MLP::train(int iter) {
+    int array[train_data.size()];
+    for (int i = 0; i < train_data.size(); i++)
+        array[i] = i;
     for (int i = 0; i < iter; i++) {
         // SGD, read every data
+        // Random shuffle the data
+        std::shuffle(array, array + train_data.size(), std::default_random_engine(666));
         cout << "[Training] On iteration " << i <<".\n";
         struct timespec before, after;
         clock_gettime(CLOCK_REALTIME, &before);
-        for (int j = 0; j < data.size(); j++) {
-            B curr_data = data[j];
-            int curr_label = label[j];
+        for (int j = 0; j < train_data.size(); j++) {
+            int idx = array[j];
+            B curr_data = train_data[idx];
+            int curr_label = train_label[idx];
             I label_vec = one_hot_vec(curr_label, this->label_num);
             this->forward(curr_data);
             this->backward(curr_data, label_vec);
@@ -315,26 +378,37 @@ void MLP::train(int iter) {
         clock_gettime(CLOCK_REALTIME, &after);
         double delta_ms = (double)(after.tv_sec - before.tv_sec) * 1000.0 + (after.tv_nsec - before.tv_nsec) / 1000000.0;
         cout << "[Training] Finished iteration " << i << ". Time passed " << delta_ms / 1000.0 << " s.\n";
-        this->predict();
+        cout << "[Training Acc.]\n";
+        predict("train");
+        cout << "[Test Acc.]\n";
+        predict("test");
     }
 }
 
 /*
  * Make predictions on test data, and calculate accuracy.
  * */
-void MLP::predict() {
+void MLP::predict(std::string type) {
+    // both training data and test data
     int correct = 0;
-    for (int i = 0; i < this->data.size(); i++) {
-        if (i % 100 == 0) {
-            cout << "[Prediction] Finished predicting "<< i << " samples.\n";
-        }
+    M data;
+    I label;
+    if (type == "train") {
+        data = train_data;
+        label = train_label;
+    } else {
+        data = test_data;
+        label = test_label;
+    }
+
+    for (int i = 0; i < data.size(); i++) {
         B curr_data = data[i];
         int curr_label = label[i];
-        this->forward(curr_data);
+        forward(curr_data);
         uint last_idx = topology.size() - 2;
-        B output = this->layers[last_idx];
+        B output = layers[last_idx];
         int best_idx = -1;
-        float best_prob = -INFINITY;
+        double best_prob = -INFINITY;
         for (int j = 0; j < output.size(); j++) {
             if (output[j] > best_prob) {
                 best_prob = output[j];
@@ -344,20 +418,15 @@ void MLP::predict() {
         if (best_idx == curr_label)
             correct++;
     }
-    cout << "correct: " << correct << ", total: " << data.size() << ".\n";
-    cout << "Final accuracy is " << correct / data.size() << "\n";
+    cout << "[Prediction] correct: " << correct << ", total: " << data.size() << ".\n";
+    cout << "[Prediction] Final accuracy is " << (double)correct / (double)data.size() << "\n";
 
 }
 
 int main() {
-    MLP mlp(std::vector<int>{784, 1024, 512, 10}, 0.001);
-    mlp.read_csv("../data/mnist_train.csv");
+    MLP mlp(std::vector<int>{784, 128, 10}, 0.01);
+    mlp.read_csv("../data/ocr_train.csv", "train");
+    mlp.read_csv("../data/ocr_test.csv", "test");
     cout << "Finished reading data. Begin Training.\n";
-    mlp.train(10);
-    mlp.data.clear();
-    mlp.label.clear();
-    mlp.read_csv("../data/mnist_test.csv");
-    cout << "On test data\n";
-    mlp.predict();
-
+    mlp.train(50);
 }

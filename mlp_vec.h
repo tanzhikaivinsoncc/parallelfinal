@@ -2,20 +2,20 @@
 // Created by Orange.
 //
 
-#ifndef MLP_MLP_H
-#define MLP_MLP_H
+#ifndef MLP_MLP_VEC_H
+#define MLP_MLP_VEC_H
 #include <vector>
 #include <string>
 
 using std::vector;
 
-typedef vector<vector<float>> M; // weight matrix
-typedef vector<float> B;
+typedef vector<vector<double>> M; // weight matrix
+typedef vector<double> B;
 typedef vector<int> I;
 
 class MLP {
 public:
-    MLP(std::vector<int> topology, float lr);
+    MLP(std::vector<int> topology, double lr);
 
     // Function for forward propagation of data
     void forward(B input);
@@ -37,12 +37,12 @@ public:
     // Train the neural net
     void train(int iter);
 
-    void predict();
+    void predict(std::string type);
 
-    void read_csv(std::string filename);
+    void read_csv(std::string filename, std::string type);
 
     vector<int> topology;
-    float lr;
+    double lr;
     int label_num;
     int feature_num;
 
@@ -54,12 +54,12 @@ public:
 
     // store the value of neurons
     vector<B> layers;
-    M data;
-    I label;
-
-
+    M train_data;
+    I train_label;
+    M test_data;
+    I test_label;
 
 };
 
 
-#endif //MLP_MLP_H
+#endif //MLP_MLP_VEC_H
