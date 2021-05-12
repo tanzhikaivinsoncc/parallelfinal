@@ -12,15 +12,10 @@ public:
     MLP(std::vector<int> topology, double lr);
 
     // Function for forward propagation of data
-    void forward();
+    void forward(double* curr_data);
 
     // Function for backward propagation of errors, use one-hot vector as target
-    void backward();
-
-    // activate function
-    void sigmoid();
-
-    void softmax();
+    void backward(double* curr_data);
 
     // Function to update the weights of connections.
     void optimize();
@@ -34,11 +29,14 @@ public:
 
     void get_stat(std::string filename, std::string type);
 
+    void one_hot_vec(int label);
+
     std::vector<int> topology;
     double lr;
     int label_num;
     int feature_num;
-    int data_num;
+    int train_data_num;
+    int test_data_num;
 
     // weights and biasses
     double** weights;
@@ -53,6 +51,7 @@ public:
     double* test_data;
     int* test_label;
 
+    int* label_vec; // one hot vector
 };
 
 

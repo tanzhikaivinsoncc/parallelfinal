@@ -1,0 +1,570 @@
+nohup: ignoring input
+Initializing layer 1, contains 128 neurons.
+Initializing layer 2, contains 10 neurons.
+Finished init.
+Finished reading data. Begin Training.
+[Training] On iteration 0.
+[Training] Finished iteration 0. Time passed 27.8051 s.
+[Training Acc.]
+[Prediction] correct: 6903, total: 9000.
+[Prediction] Final accuracy is 0.767
+[Test Acc.]
+[Prediction] correct: 742, total: 1000.
+[Prediction] Final accuracy is 0.742
+[Training] On iteration 1.
+[Training] Finished iteration 1. Time passed 27.7605 s.
+[Training Acc.]
+[Prediction] correct: 7155, total: 9000.
+[Prediction] Final accuracy is 0.795
+[Test Acc.]
+[Prediction] correct: 770, total: 1000.
+[Prediction] Final accuracy is 0.77
+[Training] On iteration 2.
+[Training] Finished iteration 2. Time passed 27.7705 s.
+[Training Acc.]
+[Prediction] correct: 7254, total: 9000.
+[Prediction] Final accuracy is 0.806
+[Test Acc.]
+[Prediction] correct: 779, total: 1000.
+[Prediction] Final accuracy is 0.779
+[Training] On iteration 3.
+[Training] Finished iteration 3. Time passed 27.7682 s.
+[Training Acc.]
+[Prediction] correct: 7454, total: 9000.
+[Prediction] Final accuracy is 0.828222
+[Test Acc.]
+[Prediction] correct: 801, total: 1000.
+[Prediction] Final accuracy is 0.801
+[Training] On iteration 4.
+[Training] Finished iteration 4. Time passed 27.765 s.
+[Training Acc.]
+[Prediction] correct: 7583, total: 9000.
+[Prediction] Final accuracy is 0.842556
+[Test Acc.]
+[Prediction] correct: 812, total: 1000.
+[Prediction] Final accuracy is 0.812
+[Training] On iteration 5.
+[Training] Finished iteration 5. Time passed 27.7605 s.
+[Training Acc.]
+[Prediction] correct: 7613, total: 9000.
+[Prediction] Final accuracy is 0.845889
+[Test Acc.]
+[Prediction] correct: 814, total: 1000.
+[Prediction] Final accuracy is 0.814
+[Training] On iteration 6.
+[Training] Finished iteration 6. Time passed 27.7623 s.
+[Training Acc.]
+[Prediction] correct: 7695, total: 9000.
+[Prediction] Final accuracy is 0.855
+[Test Acc.]
+[Prediction] correct: 821, total: 1000.
+[Prediction] Final accuracy is 0.821
+[Training] On iteration 7.
+[Training] Finished iteration 7. Time passed 27.7614 s.
+[Training Acc.]
+[Prediction] correct: 7788, total: 9000.
+[Prediction] Final accuracy is 0.865333
+[Test Acc.]
+[Prediction] correct: 826, total: 1000.
+[Prediction] Final accuracy is 0.826
+[Training] On iteration 8.
+[Training] Finished iteration 8. Time passed 27.7639 s.
+[Training Acc.]
+[Prediction] correct: 7864, total: 9000.
+[Prediction] Final accuracy is 0.873778
+[Test Acc.]
+[Prediction] correct: 830, total: 1000.
+[Prediction] Final accuracy is 0.83
+[Training] On iteration 9.
+[Training] Finished iteration 9. Time passed 27.7718 s.
+[Training Acc.]
+[Prediction] correct: 7857, total: 9000.
+[Prediction] Final accuracy is 0.873
+[Test Acc.]
+[Prediction] correct: 834, total: 1000.
+[Prediction] Final accuracy is 0.834
+[Training] On iteration 10.
+[Training] Finished iteration 10. Time passed 27.7744 s.
+[Training Acc.]
+[Prediction] correct: 7896, total: 9000.
+[Prediction] Final accuracy is 0.877333
+[Test Acc.]
+[Prediction] correct: 837, total: 1000.
+[Prediction] Final accuracy is 0.837
+[Training] On iteration 11.
+[Training] Finished iteration 11. Time passed 27.7732 s.
+[Training Acc.]
+[Prediction] correct: 7838, total: 9000.
+[Prediction] Final accuracy is 0.870889
+[Test Acc.]
+[Prediction] correct: 827, total: 1000.
+[Prediction] Final accuracy is 0.827
+[Training] On iteration 12.
+[Training] Finished iteration 12. Time passed 27.7731 s.
+[Training Acc.]
+[Prediction] correct: 8006, total: 9000.
+[Prediction] Final accuracy is 0.889556
+[Test Acc.]
+[Prediction] correct: 845, total: 1000.
+[Prediction] Final accuracy is 0.845
+[Training] On iteration 13.
+[Training] Finished iteration 13. Time passed 27.7625 s.
+[Training Acc.]
+[Prediction] correct: 7995, total: 9000.
+[Prediction] Final accuracy is 0.888333
+[Test Acc.]
+[Prediction] correct: 835, total: 1000.
+[Prediction] Final accuracy is 0.835
+[Training] On iteration 14.
+[Training] Finished iteration 14. Time passed 27.7581 s.
+[Training Acc.]
+[Prediction] correct: 8038, total: 9000.
+[Prediction] Final accuracy is 0.893111
+[Test Acc.]
+[Prediction] correct: 848, total: 1000.
+[Prediction] Final accuracy is 0.848
+[Training] On iteration 15.
+[Training] Finished iteration 15. Time passed 27.7567 s.
+[Training Acc.]
+[Prediction] correct: 8103, total: 9000.
+[Prediction] Final accuracy is 0.900333
+[Test Acc.]
+[Prediction] correct: 849, total: 1000.
+[Prediction] Final accuracy is 0.849
+[Training] On iteration 16.
+[Training] Finished iteration 16. Time passed 27.7567 s.
+[Training Acc.]
+[Prediction] correct: 8140, total: 9000.
+[Prediction] Final accuracy is 0.904444
+[Test Acc.]
+[Prediction] correct: 850, total: 1000.
+[Prediction] Final accuracy is 0.85
+[Training] On iteration 17.
+[Training] Finished iteration 17. Time passed 27.7651 s.
+[Training Acc.]
+[Prediction] correct: 8176, total: 9000.
+[Prediction] Final accuracy is 0.908444
+[Test Acc.]
+[Prediction] correct: 860, total: 1000.
+[Prediction] Final accuracy is 0.86
+[Training] On iteration 18.
+[Training] Finished iteration 18. Time passed 27.7676 s.
+[Training Acc.]
+[Prediction] correct: 8192, total: 9000.
+[Prediction] Final accuracy is 0.910222
+[Test Acc.]
+[Prediction] correct: 860, total: 1000.
+[Prediction] Final accuracy is 0.86
+[Training] On iteration 19.
+[Training] Finished iteration 19. Time passed 27.7664 s.
+[Training Acc.]
+[Prediction] correct: 8181, total: 9000.
+[Prediction] Final accuracy is 0.909
+[Test Acc.]
+[Prediction] correct: 849, total: 1000.
+[Prediction] Final accuracy is 0.849
+[Training] On iteration 20.
+[Training] Finished iteration 20. Time passed 27.7741 s.
+[Training Acc.]
+[Prediction] correct: 8255, total: 9000.
+[Prediction] Final accuracy is 0.917222
+[Test Acc.]
+[Prediction] correct: 859, total: 1000.
+[Prediction] Final accuracy is 0.859
+[Training] On iteration 21.
+[Training] Finished iteration 21. Time passed 27.7624 s.
+[Training Acc.]
+[Prediction] correct: 8285, total: 9000.
+[Prediction] Final accuracy is 0.920556
+[Test Acc.]
+[Prediction] correct: 857, total: 1000.
+[Prediction] Final accuracy is 0.857
+[Training] On iteration 22.
+[Training] Finished iteration 22. Time passed 27.7641 s.
+[Training Acc.]
+[Prediction] correct: 8271, total: 9000.
+[Prediction] Final accuracy is 0.919
+[Test Acc.]
+[Prediction] correct: 863, total: 1000.
+[Prediction] Final accuracy is 0.863
+[Training] On iteration 23.
+[Training] Finished iteration 23. Time passed 27.765 s.
+[Training Acc.]
+[Prediction] correct: 8347, total: 9000.
+[Prediction] Final accuracy is 0.927444
+[Test Acc.]
+[Prediction] correct: 863, total: 1000.
+[Prediction] Final accuracy is 0.863
+[Training] On iteration 24.
+[Training] Finished iteration 24. Time passed 27.77 s.
+[Training Acc.]
+[Prediction] correct: 8338, total: 9000.
+[Prediction] Final accuracy is 0.926444
+[Test Acc.]
+[Prediction] correct: 862, total: 1000.
+[Prediction] Final accuracy is 0.862
+[Training] On iteration 25.
+[Training] Finished iteration 25. Time passed 27.7751 s.
+[Training Acc.]
+[Prediction] correct: 8380, total: 9000.
+[Prediction] Final accuracy is 0.931111
+[Test Acc.]
+[Prediction] correct: 863, total: 1000.
+[Prediction] Final accuracy is 0.863
+[Training] On iteration 26.
+[Training] Finished iteration 26. Time passed 27.7579 s.
+[Training Acc.]
+[Prediction] correct: 8402, total: 9000.
+[Prediction] Final accuracy is 0.933556
+[Test Acc.]
+[Prediction] correct: 866, total: 1000.
+[Prediction] Final accuracy is 0.866
+[Training] On iteration 27.
+[Training] Finished iteration 27. Time passed 27.7578 s.
+[Training Acc.]
+[Prediction] correct: 8407, total: 9000.
+[Prediction] Final accuracy is 0.934111
+[Test Acc.]
+[Prediction] correct: 861, total: 1000.
+[Prediction] Final accuracy is 0.861
+[Training] On iteration 28.
+[Training] Finished iteration 28. Time passed 27.7551 s.
+[Training Acc.]
+[Prediction] correct: 8435, total: 9000.
+[Prediction] Final accuracy is 0.937222
+[Test Acc.]
+[Prediction] correct: 867, total: 1000.
+[Prediction] Final accuracy is 0.867
+[Training] On iteration 29.
+[Training] Finished iteration 29. Time passed 27.7542 s.
+[Training Acc.]
+[Prediction] correct: 8414, total: 9000.
+[Prediction] Final accuracy is 0.934889
+[Test Acc.]
+[Prediction] correct: 870, total: 1000.
+[Prediction] Final accuracy is 0.87
+[Training] On iteration 30.
+[Training] Finished iteration 30. Time passed 27.7538 s.
+[Training Acc.]
+[Prediction] correct: 8478, total: 9000.
+[Prediction] Final accuracy is 0.942
+[Test Acc.]
+[Prediction] correct: 874, total: 1000.
+[Prediction] Final accuracy is 0.874
+[Training] On iteration 31.
+[Training] Finished iteration 31. Time passed 27.753 s.
+[Training Acc.]
+[Prediction] correct: 8504, total: 9000.
+[Prediction] Final accuracy is 0.944889
+[Test Acc.]
+[Prediction] correct: 867, total: 1000.
+[Prediction] Final accuracy is 0.867
+[Training] On iteration 32.
+[Training] Finished iteration 32. Time passed 27.7551 s.
+[Training Acc.]
+[Prediction] correct: 8505, total: 9000.
+[Prediction] Final accuracy is 0.945
+[Test Acc.]
+[Prediction] correct: 877, total: 1000.
+[Prediction] Final accuracy is 0.877
+[Training] On iteration 33.
+[Training] Finished iteration 33. Time passed 27.7647 s.
+[Training Acc.]
+[Prediction] correct: 8513, total: 9000.
+[Prediction] Final accuracy is 0.945889
+[Test Acc.]
+[Prediction] correct: 871, total: 1000.
+[Prediction] Final accuracy is 0.871
+[Training] On iteration 34.
+[Training] Finished iteration 34. Time passed 27.7724 s.
+[Training Acc.]
+[Prediction] correct: 8505, total: 9000.
+[Prediction] Final accuracy is 0.945
+[Test Acc.]
+[Prediction] correct: 872, total: 1000.
+[Prediction] Final accuracy is 0.872
+[Training] On iteration 35.
+[Training] Finished iteration 35. Time passed 27.7785 s.
+[Training Acc.]
+[Prediction] correct: 8568, total: 9000.
+[Prediction] Final accuracy is 0.952
+[Test Acc.]
+[Prediction] correct: 883, total: 1000.
+[Prediction] Final accuracy is 0.883
+[Training] On iteration 36.
+[Training] Finished iteration 36. Time passed 27.7754 s.
+[Training Acc.]
+[Prediction] correct: 8584, total: 9000.
+[Prediction] Final accuracy is 0.953778
+[Test Acc.]
+[Prediction] correct: 881, total: 1000.
+[Prediction] Final accuracy is 0.881
+[Training] On iteration 37.
+[Training] Finished iteration 37. Time passed 27.764 s.
+[Training Acc.]
+[Prediction] correct: 8583, total: 9000.
+[Prediction] Final accuracy is 0.953667
+[Test Acc.]
+[Prediction] correct: 877, total: 1000.
+[Prediction] Final accuracy is 0.877
+[Training] On iteration 38.
+[Training] Finished iteration 38. Time passed 27.7575 s.
+[Training Acc.]
+[Prediction] correct: 8592, total: 9000.
+[Prediction] Final accuracy is 0.954667
+[Test Acc.]
+[Prediction] correct: 875, total: 1000.
+[Prediction] Final accuracy is 0.875
+[Training] On iteration 39.
+[Training] Finished iteration 39. Time passed 27.7552 s.
+[Training Acc.]
+[Prediction] correct: 8626, total: 9000.
+[Prediction] Final accuracy is 0.958444
+[Test Acc.]
+[Prediction] correct: 880, total: 1000.
+[Prediction] Final accuracy is 0.88
+[Training] On iteration 40.
+[Training] Finished iteration 40. Time passed 27.7538 s.
+[Training Acc.]
+[Prediction] correct: 8619, total: 9000.
+[Prediction] Final accuracy is 0.957667
+[Test Acc.]
+[Prediction] correct: 879, total: 1000.
+[Prediction] Final accuracy is 0.879
+[Training] On iteration 41.
+[Training] Finished iteration 41. Time passed 27.7543 s.
+[Training Acc.]
+[Prediction] correct: 8669, total: 9000.
+[Prediction] Final accuracy is 0.963222
+[Test Acc.]
+[Prediction] correct: 877, total: 1000.
+[Prediction] Final accuracy is 0.877
+[Training] On iteration 42.
+[Training] Finished iteration 42. Time passed 27.7546 s.
+[Training Acc.]
+[Prediction] correct: 8635, total: 9000.
+[Prediction] Final accuracy is 0.959444
+[Test Acc.]
+[Prediction] correct: 886, total: 1000.
+[Prediction] Final accuracy is 0.886
+[Training] On iteration 43.
+[Training] Finished iteration 43. Time passed 27.7547 s.
+[Training Acc.]
+[Prediction] correct: 8644, total: 9000.
+[Prediction] Final accuracy is 0.960444
+[Test Acc.]
+[Prediction] correct: 884, total: 1000.
+[Prediction] Final accuracy is 0.884
+[Training] On iteration 44.
+[Training] Finished iteration 44. Time passed 27.7548 s.
+[Training Acc.]
+[Prediction] correct: 8510, total: 9000.
+[Prediction] Final accuracy is 0.945556
+[Test Acc.]
+[Prediction] correct: 856, total: 1000.
+[Prediction] Final accuracy is 0.856
+[Training] On iteration 45.
+[Training] Finished iteration 45. Time passed 27.7706 s.
+[Training Acc.]
+[Prediction] correct: 8701, total: 9000.
+[Prediction] Final accuracy is 0.966778
+[Test Acc.]
+[Prediction] correct: 885, total: 1000.
+[Prediction] Final accuracy is 0.885
+[Training] On iteration 46.
+[Training] Finished iteration 46. Time passed 27.7747 s.
+[Training Acc.]
+[Prediction] correct: 8671, total: 9000.
+[Prediction] Final accuracy is 0.963444
+[Test Acc.]
+[Prediction] correct: 881, total: 1000.
+[Prediction] Final accuracy is 0.881
+[Training] On iteration 47.
+[Training] Finished iteration 47. Time passed 27.7711 s.
+[Training Acc.]
+[Prediction] correct: 8689, total: 9000.
+[Prediction] Final accuracy is 0.965444
+[Test Acc.]
+[Prediction] correct: 885, total: 1000.
+[Prediction] Final accuracy is 0.885
+[Training] On iteration 48.
+[Training] Finished iteration 48. Time passed 27.7707 s.
+[Training Acc.]
+[Prediction] correct: 8715, total: 9000.
+[Prediction] Final accuracy is 0.968333
+[Test Acc.]
+[Prediction] correct: 884, total: 1000.
+[Prediction] Final accuracy is 0.884
+[Training] On iteration 49.
+[Training] Finished iteration 49. Time passed 27.7606 s.
+[Training Acc.]
+[Prediction] correct: 8694, total: 9000.
+[Prediction] Final accuracy is 0.966
+[Test Acc.]
+[Prediction] correct: 879, total: 1000.
+[Prediction] Final accuracy is 0.879
+nohup: ignoring input
+Initializing layer 1, contains 128 neurons.
+Initializing layer 2, contains 10 neurons.
+Finished init.
+Finished reading data. Begin Training.
+[Training] On iteration 0.
+[Training] Finished iteration 0. Time passed 27.8992 s.
+[Training Acc.]
+[Prediction] correct: 6903, total: 9000.
+[Prediction] Final accuracy is 0.767
+[Test Acc.]
+[Prediction] correct: 742, total: 1000.
+[Prediction] Final accuracy is 0.742
+[Training] On iteration 1.
+[Training] Finished iteration 1. Time passed 27.8644 s.
+[Training Acc.]
+[Prediction] correct: 7155, total: 9000.
+[Prediction] Final accuracy is 0.795
+[Test Acc.]
+[Prediction] correct: 770, total: 1000.
+[Prediction] Final accuracy is 0.77
+[Training] On iteration 2.
+[Training] Finished iteration 2. Time passed 27.8408 s.
+[Training Acc.]
+[Prediction] correct: 7254, total: 9000.
+[Prediction] Final accuracy is 0.806
+[Test Acc.]
+[Prediction] correct: 779, total: 1000.
+[Prediction] Final accuracy is 0.779
+[Training] On iteration 3.
+[Training] Finished iteration 3. Time passed 27.8361 s.
+[Training Acc.]
+[Prediction] correct: 7454, total: 9000.
+[Prediction] Final accuracy is 0.828222
+[Test Acc.]
+[Prediction] correct: 801, total: 1000.
+[Prediction] Final accuracy is 0.801
+[Training] On iteration 4.
+[Training] Finished iteration 4. Time passed 27.8286 s.
+[Training Acc.]
+[Prediction] correct: 7583, total: 9000.
+[Prediction] Final accuracy is 0.842556
+[Test Acc.]
+[Prediction] correct: 812, total: 1000.
+[Prediction] Final accuracy is 0.812
+[Training] On iteration 5.
+[Training] Finished iteration 5. Time passed 27.8303 s.
+[Training Acc.]
+[Prediction] correct: 7613, total: 9000.
+[Prediction] Final accuracy is 0.845889
+[Test Acc.]
+[Prediction] correct: 814, total: 1000.
+[Prediction] Final accuracy is 0.814
+[Training] On iteration 6.
+[Training] Finished iteration 6. Time passed 27.8294 s.
+[Training Acc.]
+[Prediction] correct: 7695, total: 9000.
+[Prediction] Final accuracy is 0.855
+[Test Acc.]
+[Prediction] correct: 821, total: 1000.
+[Prediction] Final accuracy is 0.821
+[Training] On iteration 7.
+[Training] Finished iteration 7. Time passed 27.8291 s.
+[Training Acc.]
+[Prediction] correct: 7788, total: 9000.
+[Prediction] Final accuracy is 0.865333
+[Test Acc.]
+[Prediction] correct: 826, total: 1000.
+[Prediction] Final accuracy is 0.826
+[Training] On iteration 8.
+[Training] Finished iteration 8. Time passed 27.8231 s.
+[Training Acc.]
+[Prediction] correct: 7864, total: 9000.
+[Prediction] Final accuracy is 0.873778
+[Test Acc.]
+[Prediction] correct: 830, total: 1000.
+[Prediction] Final accuracy is 0.83
+[Training] On iteration 9.
+[Training] Finished iteration 9. Time passed 27.83 s.
+[Training Acc.]
+[Prediction] correct: 7857, total: 9000.
+[Prediction] Final accuracy is 0.873
+[Test Acc.]
+[Prediction] correct: 834, total: 1000.
+[Prediction] Final accuracy is 0.834
+[Training] On iteration 10.
+[Training] Finished iteration 10. Time passed 27.8286 s.
+[Training Acc.]
+[Prediction] correct: 7896, total: 9000.
+[Prediction] Final accuracy is 0.877333
+[Test Acc.]
+[Prediction] correct: 837, total: 1000.
+[Prediction] Final accuracy is 0.837
+[Training] On iteration 11.
+[Training] Finished iteration 11. Time passed 27.8638 s.
+[Training Acc.]
+[Prediction] correct: 7838, total: 9000.
+[Prediction] Final accuracy is 0.870889
+[Test Acc.]
+[Prediction] correct: 827, total: 1000.
+[Prediction] Final accuracy is 0.827
+[Training] On iteration 12.
+[Training] Finished iteration 12. Time passed 27.8555 s.
+[Training Acc.]
+[Prediction] correct: 8006, total: 9000.
+[Prediction] Final accuracy is 0.889556
+[Test Acc.]
+[Prediction] correct: 845, total: 1000.
+[Prediction] Final accuracy is 0.845
+[Training] On iteration 13.
+[Training] Finished iteration 13. Time passed 27.8532 s.
+[Training Acc.]
+[Prediction] correct: 7995, total: 9000.
+[Prediction] Final accuracy is 0.888333
+[Test Acc.]
+[Prediction] correct: 835, total: 1000.
+[Prediction] Final accuracy is 0.835
+[Training] On iteration 14.
+[Training] Finished iteration 14. Time passed 27.8536 s.
+[Training Acc.]
+[Prediction] correct: 8038, total: 9000.
+[Prediction] Final accuracy is 0.893111
+[Test Acc.]
+[Prediction] correct: 848, total: 1000.
+[Prediction] Final accuracy is 0.848
+[Training] On iteration 15.
+[Training] Finished iteration 15. Time passed 27.8533 s.
+[Training Acc.]
+[Prediction] correct: 8103, total: 9000.
+[Prediction] Final accuracy is 0.900333
+[Test Acc.]
+[Prediction] correct: 849, total: 1000.
+[Prediction] Final accuracy is 0.849
+[Training] On iteration 16.
+[Training] Finished iteration 16. Time passed 27.8527 s.
+[Training Acc.]
+[Prediction] correct: 8140, total: 9000.
+[Prediction] Final accuracy is 0.904444
+[Test Acc.]
+[Prediction] correct: 850, total: 1000.
+[Prediction] Final accuracy is 0.85
+[Training] On iteration 17.
+[Training] Finished iteration 17. Time passed 27.8295 s.
+[Training Acc.]
+[Prediction] correct: 8176, total: 9000.
+[Prediction] Final accuracy is 0.908444
+[Test Acc.]
+[Prediction] correct: 860, total: 1000.
+[Prediction] Final accuracy is 0.86
+[Training] On iteration 18.
+[Training] Finished iteration 18. Time passed 27.8271 s.
+[Training Acc.]
+[Prediction] correct: 8192, total: 9000.
+[Prediction] Final accuracy is 0.910222
+[Test Acc.]
+[Prediction] correct: 860, total: 1000.
+[Prediction] Final accuracy is 0.86
+[Training] On iteration 19.
+[Training] Finished iteration 19. Time passed 27.8681 s.
+[Training Acc.]
+[Prediction] correct: 8181, total: 9000.
+[Prediction] Final accuracy is 0.909
+[Test Acc.]
+[Prediction] correct: 849, total: 1000.
+[Prediction] Final accuracy is 0.849

@@ -1,0 +1,180 @@
+../../cmake3.20.2/bin/cmake ..
+nohup stdbuf -i0 -o0 -e0 ./run >> out.log 2>&1 &
+
+
+Three times, take the minimum
+**************** Forward ***************
+[128 hidden layer]
+[Sequential]
+[Training] Finished iteration 0. Forward time: 7.18667 s.
+2 cores
+[Training] Finished iteration 0. Forward time: 4.58133 s.
+3 cores
+[Training] Finished iteration 0. Forward time: 4.9118 s.
+4 cores
+[Training] Finished iteration 0. Forward time: 4.20082 s.
+5 cores
+[Training] Finished iteration 0. Forward time: 3.78869 s.
+6 cores
+[Training] Finished iteration 0. Forward time: 3.51857 s.
+7 cores
+[Training] Finished iteration 0. Forward time: 3.30304 s.
+8 cores
+[Training] Finished iteration 0. Forward time: 2.58342 s.
+
+
+
+[256 hidden layer]
+[Training] Finished iteration 0. Forward time: 14.4909 s.
+2 cores
+[Training] Finished iteration 0. Forward time: 9.46994 s.
+3 cores
+[Training] Finished iteration 0. Forward time: 7.8132 s.
+4 cores
+[Training] Finished iteration 0. Forward time: 6.85135 s.
+5 cores
+[Training] Finished iteration 0. Forward time: 6.47471 s.
+6 cores
+[Training] Finished iteration 0. Forward time: 6.13069 s.
+7 cores
+[Training] Finished iteration 0. Forward time: 5.52343 s.
+8 cores
+[Training] Finished iteration 0. Forward time: 5.33103 s.
+
+
+
+[512 hidden layer]
+[Training] Finished iteration 0. Forward time: 30.266 s.
+2 cores
+[Training] Finished iteration 0. Forward time: 20.3563 s.
+3 cores
+[Training] Finished iteration 0. Forward time: 16.4938 s.
+4 cores
+[Training] Finished iteration 0. Forward time: 14.8093 s.
+5 cores
+[Training] Finished iteration 0. Forward time: 13.7685 s.
+6 cores
+[Training] Finished iteration 0. Forward time: 12.9787 s.
+7 cores
+[Training] Finished iteration 0. Forward time: 12.4543 s.
+8 cores
+[Training] Finished iteration 0. Forward time: 5.09401 s.
+
+
+
+**************** Backward ***************
+[128]
+Sequential
+[Training] Finished iteration 0. Backward time: 1.73437 s.
+2 cores
+[Training] Finished iteration 0. Backward time: 1.66964 s.
+3 cores
+[Training] Finished iteration 0. Backward time: 1.46881 s.
+4 cores
+[Training] Finished iteration 0. Backward time: 1.38946 s.
+5 cores
+[Training] Finished iteration 0. Backward time: 1.3772 s.
+6 cores
+[Training] Finished iteration 0. Backward time: 1.37549 s.
+7 cores
+[Training] Finished iteration 0. Backward time: 1.37975 s.
+8 cores
+[Training] Finished iteration 0. Backward time: 1.37772 s.
+
+
+[256]
+Sequential
+[Training] Finished iteration 0. Backward time: 3.46623 s.
+2 cores
+[Training] Finished iteration 0. Backward time: 3.2631 s.
+3 cores
+[Training] Finished iteration 0. Backward time: 2.81944 s.
+4 cores
+[Training] Finished iteration 0. Backward time: 2.64827 s.
+5 cores
+[Training] Finished iteration 0. Backward time: 2.61533 s.
+6 cores
+[Training] Finished iteration 0. Backward time: 2.61474 s.
+7 cores
+[Training] Finished iteration 0. Backward time: 2.59468 s.
+8 cores
+[Training] Finished iteration 0. Backward time: 2.61734 s.
+
+
+[512]
+Sequential
+[Training] Finished iteration 0. Backward time: 6.91355 s.
+2 cores
+[Training] Finished iteration 0. Backward time: 6.43005 s.
+3 cores
+[Training] Finished iteration 0. Backward time: 5.64927 s.
+4 cores
+[Training] Finished iteration 0. Backward time: 5.26096 s.
+5 cores
+[Training] Finished iteration 0. Backward time: 5.14257 s.
+6 cores
+[Training] Finished iteration 0. Backward time: 5.16904 s.
+7 cores
+[Training] Finished iteration 0. Backward time: 5.14829 s.
+8 cores
+[Training] Finished iteration 0. Backward time: 5.30771 s.
+
+
+
+
+**************** Optimize ***************
+[128]
+Sequential
+[Training] Finished iteration 0. Optimize time: 12.5541 s.
+2 cores
+[Training] Finished iteration 0. Optimize time: 6.91363 s.
+3 cores
+[Training] Finished iteration 0. Total time:4.59576 s.
+4 cores
+[Training] Finished iteration 0. Optimize time: 3.47363 s.
+5 cores
+[Training] Finished iteration 0. Optimize time: 2.89727 s.
+6 cores
+[Training] Finished iteration 0. Optimize time: 2.47728 s.
+7 cores
+[Training] Finished iteration 0. Optimize time: 2.16367 s.
+8 cores
+[Training] Finished iteration 0. Optimize time: 1.87705 s.
+
+
+[256]
+Sequential
+[Training] Finished iteration 0. Optimize time: 25.2611 s.
+2 cores
+[Training] Finished iteration 0. Optimize time: 13.0844 s.
+3 cores
+[Training] Finished iteration 0. Total time:9.00857 s.
+4 cores
+[Training] Finished iteration 0. Total time:6.77123 s.
+5 cores
+[Training] Finished iteration 0. Optimize time: 5.59841 s.
+6 cores
+[Training] Finished iteration 0. Optimize time: 4.67186 s.
+7 cores
+[Training] Finished iteration 0. Optimize time: 4.04249 s.
+8 cores
+[Training] Finished iteration 0. Optimize time: 3.62974 s.
+
+
+[512]
+Sequential
+[Training] Finished iteration 0. Optimize time: 51.3031 s.
+2 cores
+[Training] Finished iteration 0. Optimize time: 26.5154 s.
+3 cores
+[Training] Finished iteration 0. Optimize time: 18.1582 s.
+4 cores
+[Training] Finished iteration 0. Optimize time: 13.7253 s.
+5 cores
+[Training] Finished iteration 0. Optimize time: 11.5627 s.
+6 cores
+[Training] Finished iteration 0. Optimize time: 9.47508 s.
+7 cores
+[Training] Finished iteration 0. Optimize time: 8.20183 s.
+8 cores
+[Training] Finished iteration 0. Optimize time: 7.4281 s.

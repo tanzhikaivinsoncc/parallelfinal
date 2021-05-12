@@ -10,6 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include <map>
+#include <omp.h>
 #include <random>
 
 using std::cout;
@@ -72,18 +73,22 @@ MLP::MLP(std::vector<int> topology, double lr) {
 #endif
 }
 
+
+double vec_prod(B vec1, B vec2, double b) {
+    double val = 0.;
+    for (int i = 0; i < vec1.size(); i++) {
+        val += vec1[i] * vec2[i];
+    }
+    return val + b;
+}
 /*
  * Basic Wx + b calculation
  * */
 B wx_plus_b(M weight, B bias, B input) {
-    B output;
+    B output(bias.size());
+#pragma omp parallel for num_threads(NCORES) schedule(static)
     for (int i = 0; i < weight.size(); i++) {
-        double v = 0.f;
-        for (int j = 0; j < weight[0].size(); j++) {
-            v += weight[i][j] * input[j];
-        }
-        v += bias[i];
-        output.push_back(v);
+        output[i] = vec_prod(weight[i], input, bias[i]);
     }
     return output;
 }
@@ -92,9 +97,11 @@ B wx_plus_b(M weight, B bias, B input) {
  * Sigmoid activation
  * */
 B MLP::sigmoid(const B& vec) {
-    B activated_vec;
-    for (double elem: vec)
-        activated_vec.push_back(1.f / (1.f + exp(-elem)));
+    B activated_vec(vec.size());
+#pragma omp parallel for num_threads(NCORES) schedule(static)
+    for (int i = 0; i < vec.size(); i++)
+        activated_vec[i] = 1.f / (1.f + exp(-vec[i]));
+//        activated_vec.push_back(1.f / (1.f + exp(-elem)));
     return activated_vec;
 }
 
@@ -104,18 +111,20 @@ B MLP::sigmoid(const B& vec) {
  * then exponentiate
  * */
 B MLP::softmax(B vec) {
-    B activated_vec;
+    B activated_vec(vec.size());
     // First get the sum
     double max_term = *max_element(std::begin(vec), std::end(vec));
     double log_exp_sum = 0.0;
     for (double elem: vec)
         log_exp_sum += exp(elem - max_term);
     log_exp_sum = max_term + log(log_exp_sum);
-
-    for (double elem: vec) {
-        double log_val = exp(elem - log_exp_sum);
-        activated_vec.push_back(log_val);
-    }
+#pragma omp parallel for num_threads(NCORES) schedule(static)
+    for (int i = 0; i < vec.size(); i++)
+        activated_vec[i] = exp(vec[i] - log_exp_sum);
+//    for (double elem: vec) {
+//        double log_val = exp(elem - log_exp_sum);
+//        activated_vec.push_back(log_val);
+//    }
 
     return activated_vec;
 }
@@ -161,16 +170,26 @@ void MLP::forward(B input) {
 #endif
 }
 
+double vec_prod_no_bias(B vec1, B vec2) {
+    double val = 0.;
+    for (int i = 0; i < vec1.size(); i++) {
+        val += vec1[i] * vec2[i];
+    }
+    return val;
+}
+
+
 void MLP::backward(B input, I target) {
     // last layer
     uint last_idx = topology.size() - 2;
-
+#pragma omp parallel for num_threads(NCORES) schedule(static)
     for (int i = 0; i < target.size(); i++) {
         // biass_grad is the same as layers_grad
         biass_grad[last_idx][i] = layers[last_idx][i] - target[i];
     }
 
     for (int i = 0; i < biass_grad[last_idx].size(); i++) {
+#pragma omp parallel for num_threads(NCORES) schedule(static)
         for (int j = 0; j < layers[last_idx - 1].size(); j++) {
             weights_grad[last_idx][i][j] = biass_grad[last_idx][i] * layers[last_idx - 1][j];
         }
@@ -179,6 +198,7 @@ void MLP::backward(B input, I target) {
     // Intermediate layers
     for (int i = topology.size() - 3; i > 0; i--) {
         // Update biass_grad, here we need weight transpose
+#pragma omp parallel for num_threads(NCORES) schedule(static)
         for (int j = 0; j < weights[i + 1][0].size(); j++) {
             double val = 0.f;
             for (int k = 0; k < weights[i + 1].size(); k++) {
@@ -190,6 +210,7 @@ void MLP::backward(B input, I target) {
 
         // Update weights_grad
         for (int j = 0; j < biass_grad[i].size(); j++) {
+#pragma omp parallel for num_threads(NCORES) schedule(static)
             for (int k = 0; k < layers[i - 1].size(); k++) {
                 weights_grad[i][j][k] = biass_grad[i][j] * layers[i - 1][k];
             }
@@ -199,6 +220,7 @@ void MLP::backward(B input, I target) {
 
     // last layer
     // Update biass_grad
+#pragma omp parallel for num_threads(NCORES) schedule(static)
     for (int i = 0; i < weights[1][0].size(); i++) {
         double val = 0.f;
         for (int j = 0; j < weights[1].size(); j++) {
@@ -210,6 +232,7 @@ void MLP::backward(B input, I target) {
 
     // Update weights_grad
     for (int i = 0; i < biass_grad[0].size(); i++) {
+#pragma omp parallel for num_threads(NCORES) schedule(static)
         for (int j = 0; j < input.size(); j++) {
             weights_grad[0][i][j] = biass_grad[0][i] * input[j];
         }
@@ -244,11 +267,18 @@ void MLP::backward(B input, I target) {
 void MLP::optimize() {
     for (int i = 0; i < weights.size(); i++) {
         // update weights[i] and biass[i]
+#pragma omp parallel for num_threads(NCORES) schedule(dynamic)
         for (int j = 0; j < weights[i].size(); j++) {
             for (int k = 0; k < weights[i][0].size(); k++)
                 weights[i][j][k] -= lr * weights_grad[i][j][k];
-            biass[i][j] -= lr * biass_grad[i][j];
+//            biass[i][j] -= lr * biass_grad[i][j];
         }
+    }
+
+    for (int i = 0; i < weights.size(); i++) {
+#pragma omp parallel for num_threads(NCORES) schedule(dynamic)
+        for (int j = 0; j < weights[i].size(); j++)
+            biass[i][j] -= lr * biass_grad[i][j];
     }
 #ifdef DEBUG
     cout << "After optimization, the weiths are\n";
@@ -343,12 +373,12 @@ void MLP::read_csv(std::string filename, std::string type) {
 }
 
 I one_hot_vec(int label, int label_num) {
-    I vec;
+    I vec(label_num);
     for (int i = 0; i < label_num; i++) {
         if (label != i)
-            vec.push_back(0);
+            vec[i] = 0;
         else
-            vec.push_back(1);
+            vec[i] = 1;
     }
     return vec;
 }
@@ -366,22 +396,45 @@ void MLP::train(int iter) {
         cout << "[Training] On iteration " << i <<".\n";
         struct timespec before, after;
         clock_gettime(CLOCK_REALTIME, &before);
+        double forward_time = 0;
+        double backward_time = 0;
+        double optimize_time = 0;
+        struct timespec forward_before, backward_before, optimize_before, optimize_after;
         for (int j = 0; j < train_data.size(); j++) {
             int idx = array[j];
             B curr_data = train_data[idx];
             int curr_label = train_label[idx];
             I label_vec = one_hot_vec(curr_label, this->label_num);
-            this->forward(curr_data);
-            this->backward(curr_data, label_vec);
+            clock_gettime(CLOCK_REALTIME, &forward_before);
+//            this->forward(curr_data);
+            clock_gettime(CLOCK_REALTIME, &backward_before);
+//            this->backward(curr_data, label_vec);
+            clock_gettime(CLOCK_REALTIME, &optimize_before);
             this->optimize();
+            clock_gettime(CLOCK_REALTIME, &optimize_after);
+            forward_time += (double)(backward_before.tv_sec - forward_before.tv_sec) * 1000.0 + (backward_before.tv_nsec - forward_before.tv_nsec) / 1000000.0;
+            backward_time += (double)(optimize_before.tv_sec - backward_before.tv_sec) * 1000.0 + (optimize_before.tv_nsec - backward_before.tv_nsec) / 1000000.0;
+            optimize_time += (double)(optimize_after.tv_sec - optimize_before.tv_sec) * 1000.0 + (optimize_after.tv_nsec - optimize_before.tv_nsec) / 1000000.0;
+
         }
         clock_gettime(CLOCK_REALTIME, &after);
         double delta_ms = (double)(after.tv_sec - before.tv_sec) * 1000.0 + (after.tv_nsec - before.tv_nsec) / 1000000.0;
-        cout << "[Training] Finished iteration " << i << ". Time passed " << delta_ms / 1000.0 << " s.\n";
+        cout << "[Training] Finished iteration " << i << ". Forward time: " << forward_time / 1000.0 << " s.\n";
+        cout << "[Training] Finished iteration " << i << ". Backward time: " << backward_time / 1000.0 << " s.\n";
+        cout << "[Training] Finished iteration " << i << ". Optimize time: " << optimize_time / 1000.0 << " s.\n";
+        cout << "[Training] Finished iteration " << i << ". Total time:" << delta_ms / 1000.0 << " s.\n";
         cout << "[Training Acc.]\n";
+        clock_gettime(CLOCK_REALTIME, &before);
         predict("train");
+        clock_gettime(CLOCK_REALTIME, &after);
+        delta_ms = (double)(after.tv_sec - before.tv_sec) * 1000.0 + (after.tv_nsec - before.tv_nsec) / 1000000.0;
+        cout << "[Training Acc.] Prediction time: " << delta_ms / 1000.0 << " s.\n";
         cout << "[Test Acc.]\n";
+        clock_gettime(CLOCK_REALTIME, &before);
         predict("test");
+        clock_gettime(CLOCK_REALTIME, &after);
+        delta_ms = (double)(after.tv_sec - before.tv_sec) * 1000.0 + (after.tv_nsec - before.tv_nsec) / 1000000.0;
+        cout << "[Test Acc.] Prediction time: " << delta_ms / 1000.0 << " s.\n";
     }
 }
 
@@ -424,9 +477,9 @@ void MLP::predict(std::string type) {
 }
 
 int main() {
-    MLP mlp(std::vector<int>{784, 128, 10}, 0.01);
+    MLP mlp(std::vector<int>{784, 512, 10}, 0.01);
     mlp.read_csv("../data/ocr_train.csv", "train");
     mlp.read_csv("../data/ocr_test.csv", "test");
     cout << "Finished reading data. Begin Training.\n";
-    mlp.train(50);
+    mlp.train(1);
 }
